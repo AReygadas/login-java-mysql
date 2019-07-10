@@ -5,11 +5,13 @@
  */
 package login;
 
+import App.Contenedor;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import conexion.ConexionDB;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import org.apache.commons.codec.digest.DigestUtils;
 
 /**
@@ -145,7 +147,10 @@ public class LoginForm extends javax.swing.JFrame {
                     String contraseña = rs.getString("Contraseña");
                     System.out.println(contraseña);
                     if(md5.equals(contraseña)){
-                        JOptionPane.showMessageDialog(null, "Logueado");
+                        Contenedor cont = new Contenedor(rs.getString("Nombre"));
+                        cont.setExtendedState(JFrame.MAXIMIZED_BOTH);
+                        cont.setLocationRelativeTo(null);
+                        cont.show();
                     }else{
                         JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
                     }
